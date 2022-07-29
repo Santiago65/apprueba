@@ -1,0 +1,335 @@
+<!-- Interests-->
+<section class="resume-section" id="einterests">
+  <div class="resume-section-content">
+  <button type="button" class="btn btn-primary" (click)="onOpenModal ('add')" data-bs-toggle="modal" data-bs-target="#addInteresModal">
+    Añadir Intereses
+     </button>
+     <h2 class="mb-5">Intereses</h2>
+  <div class="resume-section-content"*ngFor="let interes of intereses">
+
+      <!-- <p>{{interes.descInteres}}</p> -->
+
+
+      <div class="col text center">
+        <a
+          (click)="onOpenModal('edit',interes)"
+          class="btn btn-primary"
+          data-bs-placement="top"
+          data-bs-toggle="modal"
+          data-bs-original-title="edit"
+          data-bs-target="#editInteresModal"
+          ><i class="fas fa-pencil-alt"></i>
+
+       </a>&nbsp;
+       <a
+          (click)="onOpenModal('delete',interes)"
+          class="btn btn-primary"
+          data-bs-placement="top"
+          data-bs-toggle="modal"
+          data-bs-original-title="delete"
+          data-bs-target="#deleteInteresModal"
+          ><i class="fas fa-trash fa-fw"></i>
+
+       </a>
+      </div><br>
+      <p>{{interes.descInteres}}</p>
+      <!-- <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+        <div class="flex-grow-1">
+            <h3 class="mb-0">{{interes.descInteres}}</h3>
+            <div class="subheading mb-3">{{interes.tituloInteres}}</div>
+            <p>{{interes.imagenInteres}}</p>
+     </div>   </div>
+    </div> -->
+  </div>
+    <div
+    class="modal fade"
+    id="deleteInteresModal"
+    tabindex="-1"
+    data-bs-target="#deleteInteresModal"
+    role="modal-dialog"
+    aria-labelledby="deleteInteresModal"
+    aria-hidden="true"
+    >
+    <div class="modal-dialog"role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title"id="deleteInteresModal">Delete Interes</h5>
+    <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="modal"
+    aria-label="Close"
+    >
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body" style="background-color: white ;">
+    <p>
+    Estas seguro de borar Experiencia
+    {{deleteInteres?.descInteres}}?
+    </p>
+    <div class="modal-footer">
+    <button
+    type="button"
+    class="btn btn-secondary"
+    data-bs-dismiss="modal"
+    >
+    No
+    </button>
+    <button
+    (click)="onDeleteInteres(deleteInteres!.idInteres)"
+    class="btn btn-danger"
+    data-bs-dismiss="modal"
+    >
+    Yes
+    </button>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <!-- Notification for no employees -->
+    <div *ngIf="intereses?.length == 0"class="col-lg-12 col-md-12 col-xl-12">
+     <div class="alert alert-info"role="alert">
+      <h4 class="alert-heading">No hay Interes!</h4>
+      <p>No Employees were found.</p>
+    </div>
+
+    </div>
+
+          <div
+          class="modal fade"
+          id="editInteresModal"
+          tabindex="-1"
+          aria-labelledby="editInteresModal"
+          aria-hidden="true"
+
+          data-bs-target="#editInteresModal"
+          role="modal-dialog"
+
+          >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"id="editInteresModal">
+                   Edit Interes{{editInteres?.descInteres}}
+                </h5>
+                <button
+                   type="button"
+                   class="btn-close"
+                   data-bs-dismiss="modal"
+                   aria-label="Close"
+
+                   >
+                   <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                 <form #editForm="ngForm">
+                  <div class="form-group">
+                    <input
+                    type="hidden"
+                     ngModel="{{editInteres?.idInteres}}"
+                     name="idInteres"
+                     class="form-control"
+                     id="idInteres"
+                     placeholder=""
+                     />
+                    <label for="descInteres"> Descripcion</label>
+                    <input
+                    type="text"
+                   ngModel="{{editInteres?.descInteres}}"
+                   name="descInteres"
+                   class="form-control"
+                   id="descInteres"
+                   placeholder="Descripcion"
+                   />
+                  </div>
+
+                  <!-- <div class="form-group">
+                    <label for="fechaExp"> Fecha </label>
+                    <input
+                    type="text"
+                   ngModel="{{editInteres?.fechaInteres}}"
+                   name="fechaExp"
+                   class="form-control"
+                   id="fechaExp"
+                   placeholder="fecha"
+                   />
+                  </div> -->
+                  <!-- <div class="form-group">
+                   <div class="form-group">
+                     <label for="name">Imagen</label>
+                     <input
+                     type="text"
+                     ngModel="{{editInteres?.imagenInteres}}"
+                     name="imagenExp"
+                     class="form-control"
+                     id="imagenExp"
+                     placeholder="imagen"
+                     />
+                     </div> -->
+
+                      <!-- <div class="form-group">
+                        <label for="name">Titulo</label>
+                        <input
+                        type="text"
+                        ngModel="{{editInteres?.tituloInteres}}"
+                        name="tituloExp"
+                        class="form-control"
+                        id="tituloExp"
+                        aria-describedby="emailHelp"
+                        placeholder="titulo"
+                        /> -->
+                        <!-- </div> -->
+
+
+                    <div class="modal-footer">
+                    <button
+                         type="button"
+                         id=""
+                         class="btn btn-secondary"
+                         data-bs-dismiss="modal"
+                       >
+                       Cerrar
+                    </button>
+                    <button
+                     (click)="onUpdateInteres(editForm.value)"
+                       data-bs-dismiss="modal"
+                       class="btn btn-secondary"
+                       >
+                       Guardar cambios
+                    </button>
+
+                 </div>
+
+              <!-- </div> -->
+                 </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+            <div
+
+
+            class="modal fade"
+            id="addInteresModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="addInteresModal"
+            aria-hidden="true"
+            >
+
+            <div class="modal-dialog"role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"
+                    id="addInteresModal">Añadir Interes</h5>
+                    <button
+                    type="button"
+                    class="close"
+                    data-bs-dismiss="modal"
+                    aria-label="close"
+                    >
+                       <span aria-hidden="false">&times;</span>
+                    </button>
+               </div>
+
+                  <div class="modal-body">
+
+                       <form #addForm="ngForm"(ngSubmit)="onAddInteres(addForm)">
+
+
+
+                          <div class="form-group">
+                           <label for="descInteres">Descripcion</label>
+                           <input type="text"
+                                  ngModel
+                                  name="descInteres"
+                                  class="form-control"
+                                  id="descInteres"
+                                  placeholder="Descripcion"
+                                  required
+                             >
+                             </div>
+                             <!-- <div class="form-group">
+                              <label for="fechaInteres">Fecha </label>
+                              <input type="text"
+                              ngModel
+                              name="fechaInteres"
+                              class="form-control"
+                              id="fechaInteres"
+                              placeholder="fecha"
+                              required
+                              >
+                            </div> -->
+
+                           <!-- <div class="form-group">
+                              <label for="imagenInteres">Imagen</label>
+                               <input type="text"
+                                  ngModel
+                                  name="imagenInteres"
+                                  class="form-control"
+                                  id="imagenInteres"
+                                  placeholder="Imagen"
+                                  required
+                                  >
+                           </div> -->
+                           <!-- <div class="form-group">
+                            <label for="tituloInteres">Titulo </label>
+                            <input type="text"
+                            ngModel
+                            name="tituloInteres"
+                            class="form-control"
+                            id="tituloInteres"
+                            placeholder="titulo"
+
+                            >
+                          </div> -->
+
+
+         <div class="modal-footer">
+                   <button
+                   type="button"
+                   id="add-interes-form"
+                   class="btn btn-secondary"
+                   data-bs-dismiss="modal"
+                   >
+                     cerrar
+                   </button>
+              <button
+                  [disabled]="addForm.invalid"
+                  type="submit"
+                  class="btn btn-primary"
+                  >
+                  Añadir Interes
+              </button>
+            </div>
+
+        </form>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+</div>
+
+
+</section>

@@ -1,0 +1,215 @@
+
+
+<!-- About-->
+
+<div class="container-fluid mb-5 p-3"*ngIf="usuario">
+  <div class="col text center">
+    <a
+      (click)="onOpenModal('edit',usuario)"
+      class="btn btn-primary"
+      data-bs-placement="top"
+      data-bs-toggle="modal"
+      data-bs-original-title="edit"
+      data-bs-target="#editUsuarioModal"
+      ><i class="fas fa-pencil-alt"></i>
+
+   </a>&nbsp;
+
+
+ <section class="resume-section" id="eabout">
+  <div class="resume-section-content">
+      <h1 class="mb-0">
+          {{usuario.nombre}}
+          <span class="text-primary">{{usuario.apellido}}</span>
+      </h1>
+      <div class="subheading mb-5">
+        {{usuario.ciudad}}.{{usuario.pais}}.
+          <i class="fa fa-phone" aria-hidden="true"></i>·{{usuario.telefono}}
+          <a href="mailto:stgocarreira@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;{{usuario.email}}</a>
+      </div>
+      <p class="lead mb-5">{{usuario.titulo}}{{usuario.descripcion}}</p>
+      <div class="social-icons">
+          <a class="social-icon" href="https://www.linkedin.com/in/santiago-carreira-99a12522a/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a class="social-icon" href="https://github.com/Santiago65" target="_blank"><i class="fab fa-github"></i></a>
+          <a class="social-icon" href="https://twitter.com/SantiagoCarrei6" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a class="social-icon" href="https://www.facebook.com/santiagoroberto.carreira" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      </div>
+  </div>
+  <div
+      class="modal fade"
+      id="editUsuarioModal"
+      tabindex="-1"
+      aria-labelledby="editUsuarioModal"
+      aria-hidden="true"
+
+      data-bs-target="#editUsuarioModal"
+      role="modal-dialog"
+
+      >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"id="editUsuarioModal">
+               Editar Usuario{{editUsuario?.nombre}}
+            </h5>
+            <button
+               type="button"
+               class="btn-close"
+               data-bs-dismiss="modal"
+               aria-label="Close"
+
+               >
+               <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+              <div class="form-group">
+                <input
+                type="hidden"
+                 ngModel="{{editUsuario?.id}}"
+                 name="id"
+                 class="form-control"
+                 id="id"
+                 placeholder=""
+                 />
+
+
+                <!-- <label for= "apellido"> Apellido </label>
+                <input
+                type="text"
+               ngModel="{{editUsuario?.apellido}}"
+               name=" apellido"
+               class="form-control"
+               id="apellido"
+               placeholder="apellido"
+               /> -->
+              </div>
+              <div class="form-group">
+                 <label for="name">Nombre</label>
+                 <input
+                 type="text"
+                 ngModel="{{editUsuario?.nombre}}"
+                 name="nombre"
+                 class="form-control"
+                 id="nombre"
+                 aria-describedby="emailHelp"
+                 placeholder="Nombre"
+                 />
+                 </div>
+                 <div class="form-group">
+                  <label for="apellido">apellido</label>
+                  <input
+                  type="text"
+                  ngModel="{{editUsuario?.apellido}}"
+                  name="apellido"
+                  class="form-control"
+                  id="apellido"
+                  aria-describedby="emailHelp"
+                  placeholder="apellido"
+                  />
+                  </div>
+                <div class="form-group">
+                  <label for= "titulo"> titulo</label>
+                  <input
+                  type="text"
+                 ngModel="{{editUsuario?.titulo}}"
+                 name="titulo"
+                 class="form-control"
+                 id="titulo"
+                 placeholder="titulo"
+                 />
+                </div>
+                <div class="form-group">
+                  <label for= "descripcion"> descripcion</label>
+                  <input
+                  type="text"
+                 ngModel="{{editUsuario?.descripcion}}"
+                 name="descripcion"
+                 class="form-control"
+                 id="descripcion"
+                 placeholder="descripcion"
+                 />
+                </div>
+                <div class="form-group">
+                  <label for= "fotoPerfil"> fotoPerfil</label>
+                  <input
+                  type="text"
+                 ngModel="{{editUsuario?.fotoPerfil}}"
+                 name="fotoPerfil"
+                 class="form-control"
+                 id="fotoPerfil"
+                 placeholder="fotoPerfil"
+                 />
+                </div>
+                <div class="form-group">
+                  <label for= "telefono"> telefono</label>
+                  <input
+                  type="text"
+                 ngModel="{{editUsuario?.telefono}}"
+                 name="telefono"
+                 class="form-control"
+                 id="telefono"
+                 placeholder="telefono"
+                 />
+                </div>
+                <div class="form-group">
+                  <label for= "email"> email</label>
+                  <input
+                  type="text"
+                 ngModel="{{editUsuario?.email}}"
+                 name="email"
+                 class="form-control"
+                 id="email"
+                 placeholder="email"
+                 />
+                </div>
+                <div class="form-group">
+                  <label for= "pais"> pais</label>
+                  <input
+                  type="text"
+                 ngModel="{{editUsuario?.pais}}"
+                 name="pais"
+                 class="form-control"
+                 id="pais"
+                 placeholder="pais"
+                 />
+                </div>
+                <div class="form-group">
+                  <label for= "ciudad"> ciudad</label>
+                  <input
+                  type="text"
+                 ngModel="{{editUsuario?.ciudad}}"
+                 name="ciudad"
+                 class="form-control"
+                 id="ciudad"
+                 placeholder="ciudad"
+                 />
+                </div>
+
+                <div class="modal-footer">
+                <button
+                     type="button"
+                     id=""
+                     class="btn btn-secondary"
+                     data-bs-dismiss="modal"
+                   >
+                   Cerrar
+                </button>
+                <button
+                 (click)="onUpdateUsuario(editForm.value)"
+                   data-bs-dismiss="modal"
+                   class="btn btn-secondary"
+                   >
+                   Guardar cambios
+                </button>
+             </div>
+
+
+             </form>
+            </div>
+          </div>
+        </div>
+        </div>
+</section>
+

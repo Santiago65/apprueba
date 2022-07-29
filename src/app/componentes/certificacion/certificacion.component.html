@@ -1,0 +1,294 @@
+<!-- Awards-->
+<section class="resume-section" id="eawards">
+  <div class="resume-section-content">
+    <button type="button" class="btn btn-primary" (click)="onOpenModal ('add')" data-bs-toggle="modal" data-bs-target="#addCertificacionModal">
+      Añadir Certificacion
+    </button>
+      <h2 class="mb-5">Certificaciones</h2>
+      <ul class="fa-ul mb-0">
+          <li *ngFor="let certificacion of certificaciones">
+                  <div class="col text center">
+                      <a
+                        (click)="onOpenModal('edit',certificacion)"
+                        class="btn btn-primary"
+                        data-bs-placement="top"
+                        data-bs-toggle="modal"
+                        data-bs-original-title="edit"
+                        data-bs-target="#editCertificacionModal"
+                        ><i class="fas fa-pencil-alt"></i>
+
+                     </a>&nbsp;
+                     <a
+                        (click)="onOpenModal('delete',certificacion)"
+                        class="btn btn-primary"
+                        data-bs-placement="top"
+                        data-bs-toggle="modal"
+                        data-bs-original-title="delete"
+                        data-bs-target="#deleteCertificacionModal"
+                        ><i class="fas fa-trash fa-fw"></i>
+
+                     </a>
+                    </div><br>
+
+              <span class="fa-li"><i class={{certificacion.imagenCerti}}></i></span>
+              {{certificacion.descCerti}}-{{certificacion.fechaCerti}} <br> <br>
+          </li>
+
+
+      </ul>
+
+      </div>
+      <div
+      class="modal fade"
+      id="deleteCertificacionModal"
+      tabindex="-1"
+      data-bs-target="#deleteCertificacionModal"
+      role="modal-dialog"
+      aria-labelledby="deleteCertificacionModal"
+      aria-hidden="true"
+      >
+      <div class="modal-dialog"role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title"id="deleteCertificacionModal">Delete Certificacion</h5>
+      <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      >
+      <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="modal-body" style="background-color: white ;">
+      <p>
+      Estas seguro de borar Certificacion
+      {{deleteCertificacion?.descCerti}}?
+      </p>
+      <div class="modal-footer">
+      <button
+      type="button"
+      class="btn btn-secondary"
+      data-bs-dismiss="modal"
+      >
+      No
+      </button>
+      <button
+      (click)="onDeleteCertificacion(deleteCertificacion!.idCerti)"
+      class="btn btn-danger"
+      data-bs-dismiss="modal"
+      >
+      Yes
+      </button>
+      </div>
+      </div>
+      </div>
+      </div>
+    </div>
+
+
+      <!-- Notification for no employees -->
+      <div *ngIf="certificaciones?.length == 0"class="col-lg-12 col-md-12 col-xl-12">
+       <div class="alert alert-info"role="alert">
+        <h4 class="alert-heading">No hay Certificacion!</h4>
+        <p>No Employees were found.</p>
+      </div>
+
+      </div>
+
+            <div
+            class="modal fade"
+            id="editCertificacionModal"
+            tabindex="-1"
+            aria-labelledby="editCertificacionModal"
+            aria-hidden="true"
+
+            data-bs-target="#editCertificacionModal"
+            role="modal-dialog"
+
+            >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"id="editCertificacionModal">
+                     Edit Certificacion{{editCertificacion?.descCerti}}
+                  </h5>
+                  <button
+                     type="button"
+                     class="btn-close"
+                     data-bs-dismiss="modal"
+                     aria-label="Close"
+
+                     >
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                   <form #editForm="ngForm">
+                    <div class="form-group">
+                      <input
+                      type="hidden"
+                       ngModel="{{editCertificacion?.idCerti}}"
+                       name="idCerti"
+                       class="form-control"
+                       id="idCerti"
+                       placeholder=""
+                       />
+                      <label for= "desCerti"> Descripcion</label>
+                      <input
+                      type="text"
+                     ngModel="{{editCertificacion?.descCerti}}"
+                     name="descCerti"
+                     class="form-control"
+                     id="descCerti"
+                     placeholder="Descripcion"
+                     />
+                    </div>
+                    <div class="form-group">
+                      <label for= "fechaCerti"> Fecha </label>
+                      <input
+                      type="text"
+                     ngModel="{{editCertificacion?.fechaCerti}}"
+                     name="fechaCerti"
+                     class="form-control"
+                     id="fechaCerti"
+                     placeholder="fecha"
+                     />
+                    </div>
+                    <div class="form-group">
+                     <div class="form-group">
+                       <label for="name">Imagen</label>
+                       <input
+                       type="text"
+                       ngModel="{{editCertificacion?.imagenCerti}}"
+                       name="imagenCerti"
+                       class="form-control"
+                       id="imagenCerti"
+                       aria-describedby="emailHelp"
+                       placeholder="Imagen"
+                       />
+                       </div>
+
+
+                      <div class="modal-footer">
+                      <button
+                           type="button"
+                           id=""
+                           class="btn btn-secondary"
+                           data-bs-dismiss="modal"
+                         >
+                         Cerrar
+                      </button>
+                      <button
+                       (click)="onUpdateCertificacion(editForm.value)"
+                         data-bs-dismiss="modal"
+                         class="btn btn-secondary"
+                         >
+                         Guardar cambios
+                      </button>
+                   </div>
+                  </div>
+                <!-- </div> -->
+                   </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div
+
+
+              class="modal fade"
+              id="addCertificacionModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="addCertificacionModal"
+              aria-hidden="true"
+              >
+
+              <div class="modal-dialog"role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title"
+                      id="addCertificacionModal">Añadir certificacion</h5>
+                      <button
+                      type="button"
+                      class="close"
+                      data-bs-dismiss="modal"
+                      aria-label="close"
+                      >
+                         <span aria-hidden="false">&times;</span>
+                      </button>
+                 </div>
+                    <div class="modal-body">
+
+                         <form #addForm="ngForm"(ngSubmit)="onAddCertificacion(addForm)">
+
+
+
+                            <div class="form-group">
+                             <label for="descCerti">Descripcion</label>
+                             <input type="text"
+                                    ngModel
+                                    name="descCerti"
+                                    class="form-control"
+                                    id="descCerti"
+                                    placeholder="Descripcion"
+                                    required
+                               >
+                               </div>
+                              <div class="form-group">
+                                <label for="fechaCerti">Fecha </label>
+                                <input type="text"
+                                ngModel
+                                name="fechaCerti"
+                                class="form-control"
+                                id="fechaCerti"
+                                placeholder="fecha"
+                                required
+                                >
+                              </div>
+
+                             <div class="form-group">
+                                <label for="imagenCerti">Imagen</label>
+                                 <input type="text"
+                                    ngModel
+                                    name="imagenCerti"
+                                    class="form-control"
+                                    id="imagenCerti"
+                                    placeholder="Imagen"
+                                    required
+                                    >
+                             </div>
+
+
+
+           <div class="modal-footer">
+                     <button
+                     type="button"
+                     id="add-certificacion-form"
+                     class="btn btn-secondary"
+                     data-bs-dismiss="modal"
+                     >
+                       cerrar
+                     </button>
+                <button
+                    [disabled]="addForm.invalid"
+                    type="submit"
+                    class="btn btn-primary"
+                    >
+                    Añadir cambios
+                </button>
+              </div>
+          </form>
+      </div>
+      </div>
+      </div>
+      </div>
+      <!-- </div> -->
+
+
+
+  <!-- </div> -->
+<!-- </section> -->
+
+
