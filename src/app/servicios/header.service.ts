@@ -6,7 +6,7 @@ import { Usuario } from 'src/app/models/usuario';
   providedIn: 'root'
 })
 export class HeaderService {
-   private apiServerUrl='https://appargentpro.herokuapp.com'
+   private apiServerUrl='https://back-app-santiago65.koyeb.app'
   constructor(private http: HttpClient) { }
 
   public getUser():Observable<Usuario>{

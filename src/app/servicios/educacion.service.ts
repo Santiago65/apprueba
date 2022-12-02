@@ -7,7 +7,7 @@ import { Educacion } from '../models/educacion';
   providedIn: 'root'
 })
 export class EducacionService {
-  private apiServerUrl='https://appargentpro.herokuapp.com';
+  private apiServerUrl='https://back-app-santiago65.koyeb.app';
 
 
   constructor(private http:HttpClient) { }

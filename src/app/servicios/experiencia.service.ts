@@ -7,7 +7,7 @@ import { Experiencia } from '../models/experiencia';
   providedIn: 'root'
 })
 export class ExperienciaService {
-  private apiServerUrl='https://appargentpro.herokuapp.com';
+  private apiServerUrl='https://back-app-santiago65.koyeb.app';
 
 
   constructor(private http:HttpClient) { }
