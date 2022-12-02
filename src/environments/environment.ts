@@ -12,7 +12,7 @@ export const environment = {
     messagingSenderId: '619777226728',
   },
   production: false,
-  apiBaseUrl: 'https://appargentpro.herokuapp.com/'
+  apiBaseUrl: 'https://back-app-santiago65.koyeb.app'
 };
 
 /*
